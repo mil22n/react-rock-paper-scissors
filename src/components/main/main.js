@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Human from '../../assets/human.png';
+import CPU from '../../assets/cpu.png';
 
 class Main extends Component {
     render() {
@@ -11,8 +13,15 @@ class Main extends Component {
                 </header>
                 <section className="section">
                     <div className="game-modes">
-                        <Link className="mode player-vs-cpu" to="/game/Player-vs-CPU">PvC</Link>
-                        <Link className="mode cpu-vs-cpu" to="/game/CPU-vs-CPU">CvC</Link>
+                        <Link className="mode player-vs-cpu" to="/game/Player-vs-CPU">
+                            <img className="player" src={Human} alt="Player" />
+                            <img className="cpu" src={CPU} alt="CPU" />
+                        </Link>
+                        <span className="divider"></span>
+                        <Link className="mode cpu-vs-cpu" to="/game/CPU-vs-CPU">
+                            <img className="cpu" src={CPU} alt="CPU" />
+                            <img className="cpu" src={CPU} alt="CPU" />
+                        </Link>
                     </div>
                 </section>
             </div>

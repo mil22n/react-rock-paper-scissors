@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { shallow, expect } from '../../test-helper';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -52,6 +52,7 @@ describe('Main component', () => {
             expect(section).to.be.length(1);
             expect(gameModes).to.be.length(1);
             expect(gameModes.find('.mode')).to.be.length(2);
+            expect(gameModes.find('.divider')).to.be.length(1);
         });
 
         it('has the correct routes defined for game modes', () => {
@@ -62,5 +63,15 @@ describe('Main component', () => {
             expect(cpu.props().to).to.equal('/game/CPU-vs-CPU')
         });
 
+        it('has the correct image elemets', () => {
+            const player = component.find('.player-vs-cpu');
+            const cpu = component.find('.cpu-vs-cpu');
+
+            expect(player.find('img')).to.be.length(2);
+            expect(player.find('img.player')).to.be.length(1);
+            expect(player.find('img.cpu')).to.be.length(1);
+            expect(cpu.find('img')).to.be.length(2);
+            expect(cpu.find('img.cpu')).to.be.length(2);
+        });
     });
 });
