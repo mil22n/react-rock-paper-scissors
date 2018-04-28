@@ -1,12 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
 import { shallow, expect } from '../../test-helper';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 
 import Main from './main';
-import reducers from "../../reducers";
 
 describe('Main component', () => {
     describe('Structure test', () => {
