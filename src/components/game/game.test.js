@@ -31,6 +31,9 @@ describe('Game component', () => {
             expect(section.find('.player-one')).to.be.length(1);
             expect(section.find('.score')).to.be.length(1);
             expect(section.find('.player-two')).to.be.length(1);
+            expect(section.find('.control')).to.be.length(1);
+            expect(section.find('.control').find('.choice')).to.be.length(1);
+            expect(section.find('button')).to.be.length(2);
         });
     });
 });
