@@ -9,21 +9,6 @@ import Main from './main';
 import reducers from "../../reducers";
 
 describe('Main component', () => {
-    describe('Smoke test', () => {
-        it('renders without crashing', () => {
-            const div = document.createElement('div');
-            const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-            ReactDOM.render(
-                <Provider store={createStoreWithMiddleware(reducers)}>
-                    <BrowserRouter>
-                        <Route path="/" component={Main}/>
-                    </BrowserRouter>
-                </Provider>,
-                div);
-        });
-    });
-
     describe('Structure test', () => {
         let component;
         beforeEach(() => {
