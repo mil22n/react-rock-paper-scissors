@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './game.css';
+import Player from "../player/player";
 
 class Game extends Component {
     render() {
@@ -11,9 +12,13 @@ class Game extends Component {
                 </header>
                 <section className="section">
                     <div>
-                        <div className="player-one"></div>
+                        <div className="player-one">
+                            <Player playerName={"playerOne"} />
+                        </div>
                         <div className="score"></div>
-                        <div className="player-two"></div>
+                        <div className="player-two">
+                            <Player playerName={"CPU"} />
+                        </div>
                     </div>
                     <div className="control">
                         <div className="choice">
