@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './game.css';
 import Player from "../player/player";
@@ -48,6 +49,7 @@ class Game extends Component {
 
                         <button onClick={this.playRound.bind(this)}>Play!</button>
                         <button onClick={this.newGame.bind(this)}>New Game</button>
+                        <Link to="/">Back to home screen</Link>
                     </div>
                 </section>
             </div>

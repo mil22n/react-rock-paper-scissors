@@ -1,0 +1,39 @@
+.header {
+    margin-top: 100px;
+    text-align: center;
+    height: 150px;
+}
+
+.subtitle {
+    color: #999;
+    font-size: 1.5em;
+}
+
+img.player, img.cpu {
+    width: 128px;
+    height: 128px;
+}
+
+.mode {
+    display: inline-block;
+    border: 3px white solid;
+    padding: 10px;
+}
+
+.mode:hover {
+    border: 3px black solid;
+}
+
+.mode-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.divider {
+    display: inline-block;
+    border: 3px black dashed;
+    border-left: 2px;
+    height: 131px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

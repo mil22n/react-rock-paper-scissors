@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import Main from './components/main/main';
 import Game from './components/game/game';
