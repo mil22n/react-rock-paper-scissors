@@ -1,9 +1,8 @@
-import { outcomes } from "./types";
+import { outcomeNames } from "./types";
 
 export default class PlayerModel {
     constructor(name) {
         this.name = name;
-        this.choices = Object.keys(outcomes);
     }
 
     playCPU(previousResult) {
@@ -13,7 +12,7 @@ export default class PlayerModel {
         }*/
 
         //TODO: implement play logic based on the previous result
-        const index = Math.floor(Math.random() * (this.choices.length));
-        return this.choices[index];
+        const index = Math.floor(Math.random() * (outcomeNames.length));
+        return outcomeNames[index];
     }
 }

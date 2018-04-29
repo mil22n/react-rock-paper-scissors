@@ -28,11 +28,11 @@ class Game extends Component {
 
     render() {
         return (
-            <div className="game">
+            <div className="game container">
                 <header className="header">
                     <h1>Rock Paper Scissors</h1>
                 </header>
-                <section className="section">
+                <section className="section text-center">
                     <div>
                         <div className="player-one">
                             <Player playerName={this.props.game.playerOneName} result={this.playerOneOutcome} />
