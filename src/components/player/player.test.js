@@ -6,8 +6,8 @@ import Player from './player';
 describe('Player component', () => {
     describe('Structure test', () => {
         let component;
-        const playerName = 'playerName', image = 'imageSrc';
-        const props = { playerName, image };
+        const name = 'playerName', image = 'imageSrc';
+        const props = { name, image };
 
         beforeEach(() => {
             component = shallow(<Player {...props} />);
@@ -24,7 +24,7 @@ describe('Player component', () => {
 
         it('has rendered correct content', () => {
             expect(component.find('img').prop('src')).to.equal(image);
-            expect(component.find('.player-name').contains(playerName)).to.equal(true);
+            expect(component.find('.player-name').contains(name)).to.equal(true);
         });
     });
 });

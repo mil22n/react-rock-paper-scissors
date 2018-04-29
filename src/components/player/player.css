@@ -1,3 +1,12 @@
+.play-area {
+    margin-bottom: 30px;
+    height: 190px;
+    width: 190px;
+    border: 7px black solid;
+    padding: 10px;
+    border-radius: 150px;
+}
+
 .result-image {
-    height: 256px;
+    height: 150px;
 }

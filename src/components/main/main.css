@@ -1,7 +1,7 @@
-.header {
-    margin-top: 100px;
+.main .header {
+    margin-top: 30px;
     text-align: center;
-    height: 150px;
+    height: 120px;
 }
 
 .subtitle {
@@ -17,11 +17,14 @@ img.player, img.cpu {
 .mode {
     display: inline-block;
     border: 3px white solid;
-    padding: 10px;
+    padding: 30px;
 }
 
 .mode:hover {
     border: 3px black solid;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
 }
 
 .mode-name {

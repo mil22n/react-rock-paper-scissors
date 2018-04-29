@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import './player.css';
 import Assets from '../../model/assets';
+import Default from '../../assets/rock.png';
 
 class Player extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="player">
                 <div className="play-area">
-                    <img className="result-image" src={Assets[this.props.result]} alt="Result"/>
+                    {this.props.result && <img className="result-image" src={Assets[this.props.result]} />}
+                    {!this.props.result && <img className="result-image" src={Default} />}
                 </div>
                 <div className="player-name">
-                    {this.props.playerName}
+                    <h3>{this.props.name}</h3>
                 </div>
             </div>
         );

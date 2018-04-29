@@ -18,12 +18,14 @@ class Game extends Component {
 
         this.playerOneOutcome = lastRound[this.props.game.playerOneName];
         this.playerTwoOutcome = lastRound[this.props.game.playerTwoName];
-
     }
 
     newGame() {
         this.game = new GameModel();
         this.props.newGame(this.game);
+
+        delete this.playerOneOutcome;
+        delete this.playerTwoOutcome;
     }
 
     render() {
@@ -31,15 +33,20 @@ class Game extends Component {
             <div className="game container">
                 <header className="header">
                     <h1>Rock Paper Scissors</h1>
+                    <Link className="btn btn-link" to="/">Back to Home</Link>
                 </header>
                 <section className="section text-center">
                     <div>
                         <div className="player-one">
-                            <Player playerName={this.props.game.playerOneName} result={this.playerOneOutcome} />
+                            <Player
+                                name={this.props.game.playerOneName}
+                                result={this.playerOneOutcome} />
                         </div>
-                        <div className="score">{this.props.game.score}</div>
+                        {/*<div className="score">{this.props.game.score}</div>*/}
                         <div className="player-two">
-                            <Player playerName={this.props.game.playerTwoName} result={this.playerTwoOutcome} />
+                            <Player
+                                name={this.props.game.playerTwoName}
+                                result={this.playerTwoOutcome} />
                         </div>
                     </div>
                     <div className="control">
@@ -47,9 +54,11 @@ class Game extends Component {
 
                         </div>
 
-                        <button onClick={this.playRound.bind(this)}>Play!</button>
-                        <button onClick={this.newGame.bind(this)}>New Game</button>
-                        <Link to="/">Back to home screen</Link>
+                        <button className="btn btn-dark btn-lg" onClick={this.playRound.bind(this)}>Play!</button>
+                        <br/>
+                        <br/>
+
+                        <button className="btn btn-primary btn-sm"  onClick={this.newGame.bind(this)}>New Game</button>
                     </div>
                 </section>
             </div>
