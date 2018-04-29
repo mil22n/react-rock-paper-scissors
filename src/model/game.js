@@ -1,12 +1,12 @@
-import Player from './player';
+import PlayerModel from './player';
 import { gameModes } from "./types";
 import outcomeMap from './outcomeMap';
 import _ from 'lodash';
 
-export default class Game {
+export default class GameModel {
     constructor(playerOneName = 'Player One', playerTwoName = 'Player Two', mode = gameModes.CVC, results = [], score = [0, 0]) {
-        this.playerOne = new Player(playerOneName);
-        this.playerTwo = new Player(playerTwoName);
+        this.playerOne = new PlayerModel(playerOneName);
+        this.playerTwo = new PlayerModel(playerTwoName);
         this.mode = mode;
         this.results = results;
         this.score = score;

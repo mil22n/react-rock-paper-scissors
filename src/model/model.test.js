@@ -1,6 +1,6 @@
 import { expect } from '../test-helper';
-import Game from './game';
-import Player from './player';
+import GameModel from './game';
+import PlayerModel from './player';
 import { gameModes, outcomes }from './types';
 
 describe('Model', () => {
@@ -8,11 +8,10 @@ describe('Model', () => {
     describe('Game', () => {
         let game;
         beforeEach(() => {
-            game = new Game();
+            game = new GameModel();
         });
 
         it('instantiates the game with correct default values', () => {
-            const game = new Game();
             expect(game.playerOne).to.exist;
             expect(game.playerTwo).to.exist;
             expect(game.results).to.exist;
@@ -21,8 +20,8 @@ describe('Model', () => {
             expect(game.updateScore).to.exist;
             expect(game.toState).to.exist;
 
-            expect(game.playerOne).to.be.instanceOf(Player);
-            expect(game.playerTwo).to.be.instanceOf(Player);
+            expect(game.playerOne).to.be.instanceOf(PlayerModel);
+            expect(game.playerTwo).to.be.instanceOf(PlayerModel);
             expect(game.results).to.be.length(0);
             expect(game.score).to.eql([0, 0]);
         });
@@ -32,7 +31,7 @@ describe('Model', () => {
             const playerTwo = 'Two';
             const results = [{playerOneOutcome: 'ROCK', playerTwoOutcome: 'SCISSORS', winner: 'One'}];
             const score = [1, 1];
-            const game = new Game(playerOne, playerTwo, gameModes.PVC, results, score);
+            const game = new GameModel(playerOne, playerTwo, gameModes.PVC, results, score);
 
             expect(game.playerOne.name).to.be.equal(playerOne);
             expect(game.playerTwo.name).to.be.equal(playerTwo);
@@ -52,7 +51,7 @@ describe('Model', () => {
     describe('Player', () => {
         let player, outcomeNames;
         beforeEach(() => {
-            player = new Player('Name');
+            player = new PlayerModel('Name');
             outcomeNames = Object.keys(outcomes);
         });
 

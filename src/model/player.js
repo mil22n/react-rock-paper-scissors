@@ -1,6 +1,6 @@
 import { outcomes } from "./types";
 
-export default class Player {
+export default class PlayerModel {
     constructor(name) {
         this.name = name;
         this.choices = Object.keys(outcomes);
