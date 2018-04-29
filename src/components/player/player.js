@@ -5,7 +5,8 @@ class Player extends Component {
         return (
             <div className="player">
                 <div className="play-area">
-                    <img src={this.props.image} alt="Result"/>
+                    {/*<img src={this.props.image} alt="Result"/>*/}
+                    {this.props.result}
                 </div>
                 <div className="player-name">
                     {this.props.playerName}

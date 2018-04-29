@@ -21,8 +21,8 @@ export default class GameModel {
         }
 
         const result = {
-            playerOneOutcome: playerOneOutcome,
-            playerTwoOutcome: this.playerTwo.playCPU(previousResult)
+            [this.playerOne.name]: playerOneOutcome,
+            [this.playerTwo.name]: this.playerTwo.playCPU(previousResult)
         };
 
         this.updateScore(result);
@@ -30,14 +30,17 @@ export default class GameModel {
     }
 
     updateScore(result) {
-        if(result.playerOneOutcome === result.playerTwoOutcome) {
+        const playerOneOutcome = result[this.playerOne.name];
+        const playerTwoOutcome = result[this.playerTwo.name];
+
+        if(playerOneOutcome === playerTwoOutcome) {
             this.score[0] += 0.5;
             this.score[1] += 0.5;
 
             return;
         }
 
-        if(outcomeRulesMap[result.playerOneOutcome].wins.indexOf(result.playerTwoOutcome) >= 0) {
+        if(outcomeRulesMap[playerOneOutcome].wins.indexOf(playerTwoOutcome) >= 0) {
             result.winner = this.playerOne.name;
             this.score[0] += 1;
         }

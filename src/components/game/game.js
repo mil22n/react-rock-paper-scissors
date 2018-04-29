@@ -4,10 +4,23 @@ import { connect } from 'react-redux';
 import './game.css';
 import Player from "../player/player";
 import GameModel from '../../model/game';
-import { newGame } from '../../actions';
+import { newGame, playRound } from '../../actions';
 
 class Game extends Component {
     componentDidMount() {
+        this.newGame();
+    }
+
+    playRound() {
+        this.props.playRound(this.game);
+        const lastRound = this.game.results[this.game.results.length - 1];
+
+        this.playerOneOutcome = lastRound[this.props.game.playerOneName];
+        this.playerTwoOutcome = lastRound[this.props.game.playerTwoName];
+
+    }
+
+    newGame() {
         this.game = new GameModel();
         this.props.newGame(this.game);
     }
@@ -21,11 +34,11 @@ class Game extends Component {
                 <section className="section">
                     <div>
                         <div className="player-one">
-                            <Player playerName={this.props.game.playerOneName} />
+                            <Player playerName={this.props.game.playerOneName} result={this.playerOneOutcome} />
                         </div>
                         <div className="score">{this.props.game.score}</div>
                         <div className="player-two">
-                            <Player playerName={this.props.game.playerTwoName} />
+                            <Player playerName={this.props.game.playerTwoName} result={this.playerTwoOutcome} />
                         </div>
                     </div>
                     <div className="control">
@@ -33,8 +46,8 @@ class Game extends Component {
 
                         </div>
 
-                        <button>Play!</button>
-                        <button>New Game</button>
+                        <button onClick={this.playRound.bind(this)}>Play!</button>
+                        <button onClick={this.newGame.bind(this)}>New Game</button>
                     </div>
                 </section>
             </div>
@@ -46,4 +59,4 @@ const mapStateToProps = (state) => {
     return { game: state.game };
 };
 
-export default connect(mapStateToProps, { newGame })(Game);
+export default connect(mapStateToProps, { newGame, playRound })(Game);
