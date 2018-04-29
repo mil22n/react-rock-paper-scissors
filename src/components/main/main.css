@@ -1,7 +1,9 @@
 .main .header {
     margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
     height: 120px;
+    border-bottom: 1px black solid;
 }
 
 .subtitle {
@@ -14,14 +16,19 @@ img.player, img.cpu {
     height: 128px;
 }
 
+.game-modes {
+    margin-bottom: 30px;
+}
+
 .mode {
     display: inline-block;
-    border: 3px white solid;
+    border: 5px white solid;
     padding: 30px;
 }
 
-.mode:hover {
-    border: 3px black solid;
+.mode:hover, .active {
+    cursor: pointer;
+    border: 5px black solid;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -34,9 +41,8 @@ img.player, img.cpu {
 
 .divider {
     display: inline-block;
-    border: 3px black dashed;
-    border-left: 2px;
-    height: 131px;
+    border-left: 3px black dashed;
+    height: 150px;
     margin-left: 20px;
     margin-right: 20px;
 }

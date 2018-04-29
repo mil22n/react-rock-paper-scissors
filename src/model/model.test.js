@@ -31,7 +31,7 @@ describe('Model', () => {
             const playerTwo = 'Two';
             const results = [{playerOneOutcome: 'ROCK', playerTwoOutcome: 'SCISSORS', winner: 'One'}];
             const score = [1, 1];
-            const game = new GameModel(playerOne, playerTwo, gameModes.PVC, results, score);
+            const game = new GameModel(gameModes.PVC, playerOne, playerTwo, results, score);
 
             expect(game.playerOne.name).to.be.equal(playerOne);
             expect(game.playerTwo.name).to.be.equal(playerTwo);

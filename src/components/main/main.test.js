@@ -35,14 +35,6 @@ describe('Main component', () => {
             expect(gameModes.find('.divider')).to.be.length(1);
         });
 
-        it('has the correct routes defined for game modes', () => {
-            const player = component.find('.player-vs-cpu');
-            const cpu = component.find('.cpu-vs-cpu');
-
-            expect(player.props().to).to.equal('/game/Player-vs-CPU')
-            expect(cpu.props().to).to.equal('/game/CPU-vs-CPU')
-        });
-
         it('has the correct image elemets', () => {
             const player = component.find('.player-vs-cpu');
             const cpu = component.find('.cpu-vs-cpu');

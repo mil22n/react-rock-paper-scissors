@@ -2,30 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './game.css';
 import Player from "../player/player";
 import GameModel from '../../model/game';
+import { gameModes } from "../../model/types";
+import { outcomes } from "../../model/types";
+
 import { newGame, playRound } from '../../actions';
+import './game.css';
 
 class Game extends Component {
     componentDidMount() {
+        this.gameMode = this.props.match.params.mode === 'player-vc-cpu' ? gameModes.PVC : gameModes.CVC;
         this.newGame();
     }
 
+    newGame() {
+        this.game = new GameModel(this.gameMode);
+        this.props.newGame(this.game);
+
+        delete this.playerOneOutcome;
+        delete this.playerTwoOutcome;
+    }
+
     playRound() {
-        this.props.playRound(this.game);
+        this.props.playRound(this.game, this.props.selectedOutcome);
         const lastRound = this.game.results[this.game.results.length - 1];
 
         this.playerOneOutcome = lastRound[this.props.game.playerOneName];
         this.playerTwoOutcome = lastRound[this.props.game.playerTwoName];
     }
 
-    newGame() {
-        this.game = new GameModel();
-        this.props.newGame(this.game);
-
-        delete this.playerOneOutcome;
-        delete this.playerTwoOutcome;
+    handleSelect(event) {
+        event.stopPropagation();
+        console.log(event.target)
     }
 
     render() {
@@ -51,12 +60,18 @@ class Game extends Component {
                     </div>
                     <div className="control">
                         <div className="choice">
-
+                            {
+                                this.gameMode === gameModes.PVC &&
+                                <select>
+                                    { Object.values(outcomes).map(outcome => {
+                                        return (
+                                            <option key={outcome} value={outcome}>{outcome}</option>
+                                        );
+                                    })}
+                                </select>
+                            }
+                            <button className="btn btn-dark btn-lg" onClick={this.playRound.bind(this)}>Play!</button>
                         </div>
-
-                        <button className="btn btn-dark btn-lg" onClick={this.playRound.bind(this)}>Play!</button>
-                        <br/>
-                        <br/>
 
                         <button className="btn btn-primary btn-sm"  onClick={this.newGame.bind(this)}>New Game</button>
                     </div>

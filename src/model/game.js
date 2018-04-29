@@ -4,7 +4,7 @@ import outcomeRulesMap from './outcomeRulesMap';
 import _ from 'lodash';
 
 export default class GameModel {
-    constructor(playerOneName = 'Player One', playerTwoName = 'Player Two', mode = gameModes.CVC, results = [], score = [0, 0]) {
+    constructor(mode = gameModes.CVC, playerOneName = 'Player One', playerTwoName = 'Player Two', results = [], score = [0, 0]) {
         this.playerOne = new PlayerModel(playerOneName);
         this.playerTwo = new PlayerModel(playerTwoName);
         this.mode = mode;
