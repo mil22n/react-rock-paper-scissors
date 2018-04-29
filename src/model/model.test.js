@@ -41,7 +41,7 @@ describe('Model', () => {
         });
 
         it('changes state after round is played', () => {
-            const gameState = game.toState();
+            const gameState = {... game.toState()};
             game.playRound();
             expect(game.toState()).to.not.eql(gameState);
             expect(game.results).to.be.length(gameState.results.length + 1);

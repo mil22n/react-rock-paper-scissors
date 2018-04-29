@@ -1,6 +1,6 @@
 import PlayerModel from './player';
 import { gameModes } from "./types";
-import outcomeMap from './outcomeMap';
+import outcomeRulesMap from './outcomeRulesMap';
 import _ from 'lodash';
 
 export default class GameModel {
@@ -37,7 +37,7 @@ export default class GameModel {
             return;
         }
 
-        if(outcomeMap[result.playerOneOutcome].wins.indexOf(result.playerTwoOutcome) >= 0) {
+        if(outcomeRulesMap[result.playerOneOutcome].wins.indexOf(result.playerTwoOutcome) >= 0) {
             result.winner = this.playerOne.name;
             this.score[0] += 1;
         }
@@ -53,7 +53,7 @@ export default class GameModel {
             playerTwoName : this.playerTwo.name,
             mode : this.mode,
             results : this.results,
-            score : this.score
+            score : this.score[0] + ' - ' + this.score[1]
         });
     }
 }

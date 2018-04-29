@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import './game.css';
 import Player from "../player/player";
+import GameModel from '../../model/game';
+import { newGame } from '../../actions';
 
 class Game extends Component {
+    componentDidMount() {
+        this.game = new GameModel();
+        this.props.newGame(this.game);
+    }
+
     render() {
         return (
             <div className="game">
@@ -13,11 +21,11 @@ class Game extends Component {
                 <section className="section">
                     <div>
                         <div className="player-one">
-                            <Player playerName={"playerOne"} />
+                            <Player playerName={this.props.game.playerOneName} />
                         </div>
-                        <div className="score"></div>
+                        <div className="score">{this.props.game.score}</div>
                         <div className="player-two">
-                            <Player playerName={"CPU"} />
+                            <Player playerName={this.props.game.playerTwoName} />
                         </div>
                     </div>
                     <div className="control">
@@ -38,4 +46,4 @@ const mapStateToProps = (state) => {
     return { game: state.game };
 };
 
-export default connect(mapStateToProps)(Game);
+export default connect(mapStateToProps, { newGame })(Game);
