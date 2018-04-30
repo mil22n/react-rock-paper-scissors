@@ -10,6 +10,9 @@ import CPU from '../../assets/cpu.png';
 import './main.css';
 
 class Main extends Component {
+    componentDidMount() {
+        this.props.setGameMode(null);
+    }
 
     setGameMode(event, gameMode) {
         event.stopPropagation();

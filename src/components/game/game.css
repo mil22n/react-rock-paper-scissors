@@ -11,6 +11,12 @@
     margin: 30px;
 }
 
-.control .choice {
+.control * {
     margin-bottom: 10px;
+}
+
+.form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline-block;
 }
