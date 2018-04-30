@@ -1,13 +1,19 @@
 import React from 'react';
-import { shallow, expect } from '../../test-helper';
+import { mount, expect } from '../../test-helper';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import Main from './main';
 
 describe('Main component', () => {
     describe('Structure test', () => {
-        let component;
+        const mockStore = configureStore();
+        let component, store;
         beforeEach(() => {
-            component = shallow(<Main />);
+            const state = {game: {mode: null, gameModes: {CVC: '', PVC: ''}}};
+            store = mockStore(state);
+            component = mount(<Provider store={store}><BrowserRouter><Main {...state }/></BrowserRouter></Provider>).find(Main);
         });
 
         it('has the correct class', () => {

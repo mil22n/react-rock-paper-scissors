@@ -27,7 +27,6 @@ class Game extends Component {
 
     playRound() {
         this.props.playRound(this.game, this.props.game.choice);
-        console.log(this.props.game.lastRound);
     }
 
     selectOutcome(event) {
@@ -81,8 +80,11 @@ class Game extends Component {
                         <div className="choice">
                             {
                                 this.props.game.mode === gameModes.PVC &&
-                                <select className="form-control form-control-inline" onChange={this.selectOutcome.bind(this)} value={this.props.game.choice}>
-                                    <option value="" disabled selected>Please select</option>
+                                <select className="form-control form-control-inline"
+                                        onChange={this.selectOutcome.bind(this)}
+                                        value={this.props.game.choice}
+                                        defaultValue="">
+                                    <option value="" disabled>Please select</option>
                                     { Object.values(outcomes).map(outcome => {
                                         return (
                                             <option key={outcome} value={outcome}>{outcome}</option>

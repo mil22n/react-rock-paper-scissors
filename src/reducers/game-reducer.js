@@ -1,6 +1,9 @@
 import {NEW_GAME, PLAY_ROUND, SET_GAME_MODE, SET_PLAYER_CHOICE} from '../actions/types';
+import { gameModes } from "../model/types";
 
-export default function(state = {}, action = { type: '' }) {
+const initialGameState = { mode: null, gameModes };
+
+export default function(state = initialGameState, action = { type: '' }) {
     switch (action.type) {
         case NEW_GAME:
         case PLAY_ROUND:

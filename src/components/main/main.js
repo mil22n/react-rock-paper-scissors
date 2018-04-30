@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setGameMode } from "../../actions";
-import { gameModes } from "../../model/types";
-
 import Human from '../../assets/human.png';
 import CPU from '../../assets/cpu.png';
 import './main.css';
@@ -28,15 +26,15 @@ class Main extends Component {
                 </header>
                 <section className="section">
                     <div className="game-modes text-center">
-                        <div className={`mode player-vs-cpu ${this.props.game.mode === gameModes.PVC ? "active" : ""}`}
-                            onClick={(e) => { this.setGameMode(e, gameModes.PVC)}}>
+                        <div className={`mode player-vs-cpu ${this.props.game.mode === this.props.game.gameModes.PVC ? "active" : ""}`}
+                            onClick={(e) => { this.setGameMode(e, this.props.game.gameModes.PVC)}}>
                             <img className="player" src={Human} alt="Player" />
                             <img className="cpu" src={CPU} alt="CPU" />
                             <div className="mode-name">Player vs. CPU</div>
                         </div>
                         <div className="divider"></div>
-                        <div className={`mode cpu-vs-cpu ${this.props.game.mode === gameModes.CVC ? "active" : ""}`}
-                            onClick={(e) => { this.setGameMode(e, gameModes.CVC)}}>
+                        <div className={`mode cpu-vs-cpu ${this.props.game.mode === this.props.game.gameModes.CVC ? "active" : ""}`}
+                            onClick={(e) => { this.setGameMode(e, this.props.game.gameModes.CVC)}}>
                             <img className="cpu" src={CPU} alt="CPU" />
                             <img className="cpu" src={CPU} alt="CPU"  />
                             <div className="mode-name">CPU vs. CPU</div>
@@ -52,9 +50,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        game: state.game
-    }
+    return { game: state.game }
 };
 
 export default connect(mapStateToProps, { setGameMode })(Main);

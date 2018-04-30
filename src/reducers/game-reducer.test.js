@@ -1,10 +1,11 @@
 import { expect } from '../test-helper';
 import {NEW_GAME, PLAY_ROUND, SET_GAME_MODE, SET_PLAYER_CHOICE} from "../actions/types";
 import GameReducer from './game-reducer';
+import {gameModes} from "../model/types";
 
 describe('Game reducer', () => {
     it('handles action with unknown type', () => {
-        expect(GameReducer()).to.be.eql({})
+        expect(GameReducer()).to.be.eql({ mode: null, gameModes })
     });
 
     it('handles NEW_GAME action', () => {

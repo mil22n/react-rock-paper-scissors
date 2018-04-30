@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, expect } from '../../test-helper';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import Game from './game';
 import { gameModes } from '../../model/types';
@@ -17,13 +18,13 @@ describe('Game component', () => {
                     playerOneName: 'Player One',
                     playerTwoName: 'Player Two',
                     results: [],
-                    score: '0 - 0',
+                    score: {PlayerOne: 0, draw: 0, PlayerTwo: 0},
                     mode: gameModes.PVC
                 }
             };
             store = mockStore(gameState);
 
-            component = mount(<Provider store={store}><Game {...gameState}/></Provider>).find(Game);
+            component = mount(<Provider store={store}><BrowserRouter><Game {...gameState}/></BrowserRouter></Provider>).find(Game);
         });
 
         it('has the correct class', () => {
@@ -59,9 +60,9 @@ describe('Game component', () => {
             const playerOne = section.find('.player-one').find(Player);
             const playerTwo = section.find('.player-two').find(Player);
 
-            expect(playerOne.props().playerName).to.be.eql(gameState.game.playerOneName);
-            expect(playerTwo.props().playerName).to.be.eql(gameState.game.playerTwoName);
-            // expect(section.find('.score').contains(gameState.game.score)).to.be.true;
+            expect(playerOne.props().name).to.be.eql(gameState.game.playerOneName);
+            expect(playerTwo.props().name).to.be.eql(gameState.game.playerTwoName);
+            expect(section.find('.score').contains(gameState.game.score)).to.be.true;
         });
     });
 });
