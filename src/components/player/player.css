@@ -7,6 +7,6 @@
     border-radius: 150px;
 }
 
-.result-image {
+.result-image, .default-image {
     height: 150px;
 }

@@ -4,7 +4,6 @@ import PlayerModel from './player';
 import { gameModes, outcomes }from './types';
 
 describe('Model', () => {
-
     describe('Game', () => {
         let game;
         beforeEach(() => {
@@ -23,7 +22,7 @@ describe('Model', () => {
             expect(game.playerOne).to.be.instanceOf(PlayerModel);
             expect(game.playerTwo).to.be.instanceOf(PlayerModel);
             expect(game.results).to.be.length(0);
-            // expect(game.score).to.eql([0, 0]);
+            expect(game.score).to.eql({playerOne: 0, draw: 0, playerTwo: 0});
         });
 
         it('instantiates the game with correct values passed to the constructor', () => {

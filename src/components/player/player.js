@@ -9,7 +9,7 @@ class Player extends Component {
             <div className="player">
                 <div className="play-area">
                     {this.props.lastRound && <img className="result-image" src={Assets[this.props.lastRound[this.props.name]]} alt="Result"/>}
-                    {!this.props.lastRound && <img className="result-image" src={Default} alt="Default" />}
+                    {!this.props.lastRound && <img className="default-image" src={Default} alt="Default" />}
                 </div>
                 <div className="player-name">
                     <h3>{this.props.name}</h3>

@@ -67,6 +67,9 @@ class Game extends Component {
                                     </tr>
                                     </tbody>
                                 </table>
+                                <div className="winner">
+
+                                </div>
                             </div>
                         }
                         <div className="player-two">

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, expect } from '../../test-helper';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 import Game from './game';
 import { gameModes } from '../../model/types';
@@ -38,6 +38,7 @@ describe('Game component', () => {
             expect(header).to.be.length(1);
             expect(title).to.be.length(1);
             expect(title.contains('Rock Paper Scissors')).to.equal(true);
+            expect(header.find(Link).props().to).to.equal('/');
         });
 
         it('has the correct section structure', () => {
