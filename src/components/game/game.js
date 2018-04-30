@@ -23,17 +23,11 @@ class Game extends Component {
     newGame() {
         this.game = new GameModel(this.props.game.mode);
         this.props.newGame(this.game);
-
-        delete this.playerOneOutcome;
-        delete this.playerTwoOutcome;
     }
 
     playRound() {
         this.props.playRound(this.game, this.props.game.choice);
-        const lastRound = this.game.results[this.game.results.length - 1];
-
-        this.playerOneOutcome = lastRound[this.props.game.playerOneName];
-        this.playerTwoOutcome = lastRound[this.props.game.playerTwoName];
+        console.log(this.props.game.lastRound);
     }
 
     selectOutcome(event) {
@@ -53,7 +47,7 @@ class Game extends Component {
                         <div className="player-one">
                             <Player
                                 name={this.props.game.playerOneName}
-                                result={this.playerOneOutcome} />
+                                lastRound={this.props.game.lastRound}/>
                         </div>
                         {
                             this.props.game.score &&
@@ -79,7 +73,7 @@ class Game extends Component {
                         <div className="player-two">
                             <Player
                                 name={this.props.game.playerTwoName}
-                                result={this.playerTwoOutcome} />
+                                lastRound={this.props.game.lastRound} />
                         </div>
                     </div>
 

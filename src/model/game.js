@@ -59,8 +59,9 @@ export default class GameModel {
             playerOneName : this.playerOne.name,
             playerTwoName : this.playerTwo.name,
             mode : this.mode,
-            results : this.results,
-            score : this.score
+            results: this.results,
+            lastRound: this.results.length > 0 ? this.results[this.results.length - 1] : null,
+            score: this.score
         });
     }
 }
