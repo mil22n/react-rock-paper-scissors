@@ -25,6 +25,8 @@ export default class GameModel {
             [this.playerTwo.name]: this.playerTwo.playCPU(previousResult)
         };
 
+        console.log(result);
+
         this.updateScore(result);
         this.results.push(result);
     }

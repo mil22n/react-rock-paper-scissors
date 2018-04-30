@@ -7,17 +7,16 @@ import GameModel from '../../model/game';
 import { gameModes } from "../../model/types";
 import { outcomes } from "../../model/types";
 
-import { newGame, playRound } from '../../actions';
+import { newGame, playRound, setPlayerChoice } from '../../actions';
 import './game.css';
 
 class Game extends Component {
     componentDidMount() {
-        this.gameMode = this.props.match.params.mode === 'player-vc-cpu' ? gameModes.PVC : gameModes.CVC;
         this.newGame();
     }
 
     newGame() {
-        this.game = new GameModel(this.gameMode);
+        this.game = new GameModel(this.props.game.mode);
         this.props.newGame(this.game);
 
         delete this.playerOneOutcome;
@@ -25,16 +24,16 @@ class Game extends Component {
     }
 
     playRound() {
-        this.props.playRound(this.game, this.props.selectedOutcome);
+        this.props.playRound(this.game, this.props.game.choice);
         const lastRound = this.game.results[this.game.results.length - 1];
 
         this.playerOneOutcome = lastRound[this.props.game.playerOneName];
         this.playerTwoOutcome = lastRound[this.props.game.playerTwoName];
     }
 
-    handleSelect(event) {
+    selectOutcome(event) {
         event.stopPropagation();
-        console.log(event.target)
+        this.props.setPlayerChoice(event.target.value);
     }
 
     render() {
@@ -61,8 +60,8 @@ class Game extends Component {
                     <div className="control">
                         <div className="choice">
                             {
-                                this.gameMode === gameModes.PVC &&
-                                <select>
+                                this.props.game.mode === gameModes.PVC &&
+                                <select onChange={this.selectOutcome.bind(this)} value={this.props.game.choice}>
                                     { Object.values(outcomes).map(outcome => {
                                         return (
                                             <option key={outcome} value={outcome}>{outcome}</option>
@@ -85,4 +84,4 @@ const mapStateToProps = (state) => {
     return { game: state.game };
 };
 
-export default connect(mapStateToProps, { newGame, playRound })(Game);
+export default connect(mapStateToProps, { newGame, playRound, setPlayerChoice })(Game);

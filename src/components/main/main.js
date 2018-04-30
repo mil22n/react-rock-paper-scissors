@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { setGameMode } from "../../actions";
+import { gameModes } from "../../model/types";
 
 import Human from '../../assets/human.png';
 import CPU from '../../assets/cpu.png';
 import './main.css';
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { mode: '', url: '' };
-    }
 
-    setActiveMode(event, gameMode) {
+    setGameMode(event, gameMode) {
         event.stopPropagation();
-        this.setState({mode: gameMode, url: `/game/${gameMode}`});
+        this.props.setGameMode(gameMode);
     }
 
     render() {
@@ -25,22 +25,22 @@ class Main extends Component {
                 </header>
                 <section className="section">
                     <div className="game-modes text-center">
-                        <div className={`mode player-vs-cpu ${this.state.mode === "player-vc-cpu" ? "active" : ""}`}
-                            onClick={(e) => { this.setActiveMode(e, "player-vc-cpu")}}>
+                        <div className={`mode player-vs-cpu ${this.props.game.mode === gameModes.PVC ? "active" : ""}`}
+                            onClick={(e) => { this.setGameMode(e, gameModes.PVC)}}>
                             <img className="player" src={Human} alt="Player" />
                             <img className="cpu" src={CPU} alt="CPU" />
                             <div className="mode-name">Player vs. CPU</div>
                         </div>
                         <div className="divider"></div>
-                        <div className={`mode cpu-vs-cpu ${this.state.mode === "cpu-vs-cpu" ? "active" : ""}`}
-                            onClick={(e) => { this.setActiveMode(e, 'cpu-vs-cpu')}}>
+                        <div className={`mode cpu-vs-cpu ${this.props.game.mode === gameModes.CVC ? "active" : ""}`}
+                            onClick={(e) => { this.setGameMode(e, gameModes.CVC)}}>
                             <img className="cpu" src={CPU} alt="CPU" />
                             <img className="cpu" src={CPU} alt="CPU"  />
                             <div className="mode-name">CPU vs. CPU</div>
                         </div>
                     </div>
                     <div className="text-center">
-                        <Link className="btn btn-lg btn-dark" to={this.state.url}>Begin!</Link>
+                        <Link className="btn btn-lg btn-dark" to="/game">Begin!</Link>
                     </div>
                 </section>
             </div>
@@ -48,4 +48,10 @@ class Main extends Component {
     }
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+    return {
+        game: state.game
+    }
+};
+
+export default connect(mapStateToProps, { setGameMode })(Main);

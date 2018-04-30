@@ -1,5 +1,5 @@
 import { expect } from '../test-helper';
-import {NEW_GAME, PLAY_ROUND} from "../actions/types";
+import {NEW_GAME, PLAY_ROUND, SET_GAME_MODE, SET_PLAYER_CHOICE} from "../actions/types";
 import GameReducer from './game-reducer';
 
 describe('Game reducer', () => {
@@ -19,5 +19,19 @@ describe('Game reducer', () => {
         const action = { type: PLAY_ROUND, payload };
 
         expect(GameReducer({}, action)).to.eql(payload);
+    });
+
+    it('handles SET_GAME_MODE action', () => {
+        const gameMode = { mode: 'mode' };
+        const action = { type: SET_GAME_MODE, payload: gameMode.mode };
+
+        expect(GameReducer({}, action)).to.eql(gameMode);
+    });
+
+    it('handles SET_PLAYER_CHOICE action', () => {
+        const playerChoice = { choice: 'choice' };
+        const action = { type: SET_PLAYER_CHOICE, payload: playerChoice.choice };
+
+        expect(GameReducer({}, action)).to.eql(playerChoice);
     });
 });

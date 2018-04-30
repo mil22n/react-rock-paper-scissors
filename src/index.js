@@ -16,7 +16,7 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
             <Switch>
-                <Route path="/game/:mode" component={Game}/>
+                <Route path="/game" component={Game}/>
                 <Route path="/" component={Main}/>
             </Switch>
         </BrowserRouter>

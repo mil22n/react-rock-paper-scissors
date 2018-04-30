@@ -1,6 +1,6 @@
 import { expect } from '../test-helper';
-import { NEW_GAME, PLAY_ROUND } from './types';
-import { newGame, playRound } from './'
+import {NEW_GAME, PLAY_ROUND, SET_GAME_MODE, SET_PLAYER_CHOICE} from './types';
+import { newGame, playRound, setGameMode, setPlayerChoice } from './'
 
 describe('Actions', () => {
     describe('newGame', () => {
@@ -25,5 +25,23 @@ describe('Actions', () => {
             expect(action.type).to.equal(PLAY_ROUND);
             expect(action.payload).to.eql(game.toState());
         });
-    })
+    });
+
+    describe('setGameMode', () => {
+        it('has the correct type and payload', () => {
+            const mode = 'mode';
+            const action = setGameMode(mode);
+            expect(action.type).to.equal(SET_GAME_MODE);
+            expect(action.payload).to.equal(mode);
+        });
+    });
+
+    describe('setPlayerChoice', () => {
+        it('has the correct type and payload', () => {
+            const choice = 'choice';
+            const action = setPlayerChoice(choice);
+            expect(action.type).to.equal(SET_PLAYER_CHOICE);
+            expect(action.payload).to.equal(choice);
+        });
+    });
 });
