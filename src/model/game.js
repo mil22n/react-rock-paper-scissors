@@ -4,7 +4,13 @@ import outcomeRulesMap from './outcomeRulesMap';
 import _ from 'lodash';
 
 export default class GameModel {
-    constructor(mode = gameModes.CVC, playerOneName = 'Player One', playerTwoName = 'Player Two', results = [], score = [0, 0]) {
+    constructor(
+        mode = gameModes.CVC,
+        playerOneName = 'Player One',
+        playerTwoName = 'Player Two',
+        results = [],
+        score = { playerOne: 0, draw: 0, playerTwo: 0}) {
+
         this.playerOne = new PlayerModel(playerOneName);
         this.playerTwo = new PlayerModel(playerTwoName);
         this.mode = mode;
@@ -25,8 +31,6 @@ export default class GameModel {
             [this.playerTwo.name]: this.playerTwo.playCPU(previousResult)
         };
 
-        console.log(result);
-
         this.updateScore(result);
         this.results.push(result);
     }
@@ -36,19 +40,17 @@ export default class GameModel {
         const playerTwoOutcome = result[this.playerTwo.name];
 
         if(playerOneOutcome === playerTwoOutcome) {
-            this.score[0] += 0.5;
-            this.score[1] += 0.5;
-
+            this.score.draw += 1;
             return;
         }
 
         if(outcomeRulesMap[playerOneOutcome].wins.indexOf(playerTwoOutcome) >= 0) {
+            this.score.playerOne += 1;
             result.winner = this.playerOne.name;
-            this.score[0] += 1;
         }
         else {
+            this.score.playerTwo += 1;
             result.winner = this.playerTwo.name;
-            this.score[1] += 1;
         }
     }
 
@@ -58,7 +60,7 @@ export default class GameModel {
             playerTwoName : this.playerTwo.name,
             mode : this.mode,
             results : this.results,
-            score : this.score[0] + ' - ' + this.score[1]
+            score : this.score
         });
     }
 }

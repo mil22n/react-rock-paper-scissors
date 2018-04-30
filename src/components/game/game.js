@@ -55,13 +55,34 @@ class Game extends Component {
                                 name={this.props.game.playerOneName}
                                 result={this.playerOneOutcome} />
                         </div>
-                        {/*<div className="score">{this.props.game.score}</div>*/}
+                        {
+                            this.props.game.score &&
+                            <div className="score">
+                                <table className="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Win</th>
+                                        <th>Draw</th>
+                                        <th>Win</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{this.props.game.score.playerOne}</td>
+                                        <td>{this.props.game.score.draw}</td>
+                                        <td>{this.props.game.score.playerTwo}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
                         <div className="player-two">
                             <Player
                                 name={this.props.game.playerTwoName}
                                 result={this.playerTwoOutcome} />
                         </div>
                     </div>
+
                     <div className="control">
                         <div className="choice">
                             {
@@ -77,7 +98,11 @@ class Game extends Component {
                             }
 
                         </div>
-                        <button className="btn btn-dark btn-lg" onClick={this.playRound.bind(this)}>Play!</button>
+                        <button className="btn btn-dark btn-lg"
+                                disabled={this.props.game.mode === gameModes.PVC && !this.props.game.choice}
+                                onClick={this.playRound.bind(this)}>
+                            Play!
+                        </button>
                         <button className="btn btn-link btn-sm btn-block" onClick={this.newGame.bind(this)}>New Game</button>
                     </div>
                 </section>

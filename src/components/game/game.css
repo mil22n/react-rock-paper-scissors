@@ -6,9 +6,11 @@
     border-bottom: 1px black solid;
 
 }
+
 .player-one, .player-two, .score {
     display: inline-block;
     margin: 30px;
+    height: 190px;
 }
 
 .control * {
